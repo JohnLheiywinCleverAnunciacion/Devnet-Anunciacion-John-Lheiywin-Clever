@@ -1,0 +1,134 @@
+"""
+Midterm Practical Exam — Pet Adoption Records Manager
+Student: [Anunciacion John Lheiywin Clever V.]
+Date: [09-26-26]
+"""
+
+# The list starts empty as required, growing as the user adds pets
+pets = [] 
+
+def display_menu():
+    """Displays the menu, prompts the user for a choice, and returns it."""
+    print("\n=== Pet Adoption Records ===")
+    print("1. Add a pet")
+    print("2. View all pets")
+    print("3. Count available vs adopted")
+    print("4. Find a pet by name")
+    print("5. Remove a pet (Bonus)")
+    print("6. Exit")
+    choice = input("Choose an option (1-6): ").strip()
+    return choice
+
+def add_pet(pet_list):
+    """Asks for name, animal type, and status — builds the string, adds to the list."""
+    print("\n--- Add a New Pet ---")
+    name = input("Enter pet name: ").strip()
+    animal_type = input("Enter animal type (e.g., Dog, Cat): ").strip()
+    
+    # Validation loop for adoption status
+    while True:
+        status = input("Enter status (Available/Adopted): ").strip().capitalize()
+        if status in ["Available", "Adopted"]:
+            break
+        print("Invalid status! Please enter 'Available' or 'Adopted'.")
+    
+    # Format: "Buddy - Dog - Available"
+    pet_record = f"{name} - {animal_type} - {status}"
+    pet_list.append(pet_record)
+    print(f"Success! Added: {pet_record}")
+
+def view_pets(pet_list):
+   
+    print("\n--- All Pet Records ---")
+    if not pet_list:
+        print("No pet records available yet.")
+        return
+        
+    for index, pet in enumerate(pet_list, 1):
+        print(f"{index}. {pet}")
+
+def count_available_adopted(pet_list):
+   
+    print("\n--- Adoption Status Counts ---")
+    if not pet_list:
+        print("No records available to count. Available: 0, Adopted: 0")
+        return
+        
+    available_count = 0
+    adopted_count = 0
+    
+    for pet in pet_list:
+        # Check if "Available" or "Adopted" is in the stored string
+        if "Available" in pet:
+            available_count += 1
+        elif "Adopted" in pet:
+            adopted_count += 1
+            
+    print(f"Available Pets: {available_count}")
+    print(f"Adopted Pets:   {adopted_count}")
+
+def find_pet(pet_list):
+  
+    print("\n--- Find a Pet ---")
+    if not pet_list:
+        print("No records available to search.")
+        return
+        
+    search_name = input("Enter the pet name to search for: ").strip().lower()
+    found = False
+    
+    for pet in pet_list:
+        # Split the string to isolate the pet's name
+        parts = pet.split(" - ")
+        pet_name = parts[0]
+        
+        if pet_name.lower() == search_name:
+            print(f"Found match: {pet}")
+            found = True
+            
+    if not found:
+        print(f"Pet named '{search_name.capitalize()}' was not found.")
+
+def remove_pet(pet_list):
+   list."""
+    print("\n--- Remove a Pet ---")
+    if not pet_list:
+        print("No records available to remove.")
+        return
+        
+    search_name = input("Enter the name of the pet to remove: ").strip().lower()
+    to_remove = None
+    
+    for pet in pet_list:
+        parts = pet.split(" - ")
+        if parts[0].lower() == search_name:
+            to_remove = pet
+            break  # Stop at the first matching pet found
+            
+    if to_remove:
+        pet_list.remove(to_remove)
+        print(f"Successfully removed record: {to_remove}")
+    else:
+        print(f"Pet named '{search_name.capitalize()}' not found.")
+
+def main():
+    running = True
+    while running:
+        choice = display_menu()
+        
+        if choice == "1":
+            add_pet(pets)
+        elif choice == "2":
+            view_pets(pets)
+        elif choice == "3":
+            count_available_adopted(pets)
+        elif choice == "4":
+            find_pet(pets)
+        elif choice == "5":
+            remove_pet(pets)
+        elif choice == "6":
+            print("\nExiting Pet Adoption Records Manager. Goodbye!")
+            running = False
+        else:
+            print("Invalid selection! Please type a number between 1 and 6.")
+
