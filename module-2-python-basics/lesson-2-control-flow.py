@@ -40,7 +40,6 @@ MY OWN EXAMPLE(S)
 ============================================
 """
 
-# Movie Theater Ticket Pricing System
 
 customer_age = 16
 is_student = True
@@ -48,7 +47,7 @@ is_matinee = False  # Matinee showtimes get a discount regardless of age
 
 print(f"Customer Details: Age {customer_age}, Student: {is_student}, Matinee: {is_matinee}")
 
-# Calculating ticket price based on multiple conditions
+
 if is_matinee:
     ticket_price = 8.00
     ticket_type = "Matinee Special"
@@ -65,7 +64,6 @@ else:
     ticket_price = 14.00
     ticket_type = "Standard Adult"
 
-# Display result
 print(f"Ticket Type: {ticket_type}")
 print(f"Total Amount Due: ${ticket_price:.2f}")
 
