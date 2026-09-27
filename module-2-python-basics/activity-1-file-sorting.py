@@ -1,6 +1,6 @@
 """
 Module 2 — Activity: File Sorting with os and shutil
-Student: Alex Rivera
+Student: Anunciacion John Lheiywin Clever V.
 Date: September 27, 2026
 
 ============================================
